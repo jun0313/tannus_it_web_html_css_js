@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>원료 생산 일지 입력</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    body { background:black; color:white; font-family:Segoe UI, sans-serif; margin:0; padding:0; }
+    header {
+      background-color: black;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      font-size: 3em;
+      font-family: 'Anton', sans-serif;
+      letter-spacing: 2px;
+    }
+    .menu {
+      width: 98%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      background-color: black;
+      text-align: center;
+      align-items: center;
+      border: 3px solid red;
+      border-radius: 5px;
+    }
+    .menu-item { position: relative; }
+    .menu button {
+      background-color: black;
+      border: none;
+      color: white;
+      padding: 1em 0;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      width: 100%;
+    }
+    .menu button:hover { color: #ff3c57; }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #000;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+      z-index: 100;
+      width: 160px;
+    }
+    .submenu ul { list-style: none; margin: 0; padding: 0; }
+    .submenu li {
+      text-align: center;
+      font-size: 1em;
+      padding: 0.8em;
+      border-bottom: 1px solid #222;
+    }
+    .submenu li a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+    }
+    .submenu li a:hover { color: #ff3c57; }
+    .menu-item:hover .submenu { display: block; }
+    main { padding: 20px; }
+    table {
+      width: 100%;
+      background: white;
+      color: black;
+      text-align: center;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 6px;
+    }
+    input[type="text"] {
+      width: 100%;
+      height: 25px;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      resize: none;
+    }
+    .section-title {
+      background-color: #ddd;
+      font-weight: bold;
+      text-align: center;
+    }
+    .register-button {
+      background-color: #ff3c57;
+      color: white;
+      padding: 0.5em 1.5em;
+      border: none;
+      border-radius: 7px;
+      font-size: 1em;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .register-button:hover { background-color: #e22e4d; }
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #aaa;
+      background-color: #1a1a1a;
+      padding: 1em 0;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>Production Management System</header>
+  <nav class="menu">
+    <!-- 메뉴 동일하게 유지 -->
+    <div class="menu-item"><button>NoticeBoard</button><div class="submenu"><ul><li><a href="#">공지사항</a></li><li><a href="#">문의게시판</a></li></ul></div></div>
+    <div class="menu-item"><button>Tire</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Armour</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Tubeless</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Oofos</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>QuanFoam</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Compound</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>TpuTube</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>QC</button><div class="submenu"><ul><li><a href="#">Tire</a></li><li><a href="#">Armour</a></li><li><a href="#">Tubeless</a></li><li><a href="#">Oofos</a></li><li><a href="#">QuanFoam</a></li><li><a href="#">Compound</a></li><li><a href="#">Tpu</a></li></ul></div></div>
+  </nav>
+
+  <main>
+    <h2 style="text-align:center;">원료 생산 일지 입력</h2>
+    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 30px;">
+  <div>
+    <label style="color: white;">작성자</label><br>
+    <input type="text" id="authorInput" placeholder="이름 입력" style="height: 25px; width: 200px;">
+  </div>
+  <div>
+    <label style="color: white;">작성일</label><br>
+    <input type="date" id="dateInput" style="height: 25px; width: 200px;">
+  </div>
+</div>
+    <table>
+  <thead>
+    <tr>
+      <th>품목</th><th>버전</th><th>색상</th><th>배치 무게</th><th>배치 수</th><th>사이즈</th><th>총투입량</th><th>LOSS</th>
+    </tr>
+  </thead>
+  <tbody id="mainProductionTable">
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+  </tbody>
+</table>
+
+    <table>
+  <thead>
+    <tr><th colspan="8" class="section-title">압출기 온도</th></tr>
+    <tr>
+
+      <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+  </tbody>
+</table>
+
+   <table>
+  <thead>
+    <tr><th colspan="4" class="section-title">교반</th><th class="section-title" rowspan="2">비고</th></tr>
+    <tr>
+      <th>품목</th><th>사이즈</th><th>색상</th><th>무게</th>
+    </tr>
+  </thead>
+  <tbody id="mixingTable">
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td rowspan="3"><textarea></textarea></td>
+    </tr>
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+    </tr>
+  </tbody>
+</table>
+
+    <div style="text-align:center;">
+      <button class="register-button" onclick="registerCompoundLog()">등록</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p style="margin: 0;">담당자 : 김준태 팀장 | 연락처 : 010-8790-0309 | email : jtkim@tannus.com</p>
+  </footer>
+
+  <script>
+  function registerCompoundLog() {
+    const selectedDate = document.getElementById('dateInput').value || new Date().toISOString().split('T')[0];
+    const currentDate = new Date().toISOString().split('T')[0]; // 현실 날짜
+    const author = document.getElementById('authorInput').value || '미입력';
+    
+    const mainRows = Array.from(document.querySelectorAll('#mainProductionTable tr'));
+    const mixRows = Array.from(document.querySelectorAll('#mixingTable tr'));
+    const extrusionTemps = Array.from(document.querySelectorAll('table:nth-of-type(2) tbody input')).map(el => el.value);
+
+    const mainData = mainRows.map(row => Array.from(row.querySelectorAll('input')).map(td => td.value));
+    const mixData = mixRows.map(row => Array.from(row.querySelectorAll('input')).map(td => td.value));
+    const note = document.querySelector('textarea').value;
+
+    const postData = {
+      id: Date.now(),
+      title: `${selectedDate} 원료 생산 일지`,
+      author: author,
+      date: currentDate,  // 현실 날짜 저장
+      mainData: mainData,
+      extrusionTemps: extrusionTemps,
+      mixData: mixData,
+      note: note
+    };
+
+    const posts = JSON.parse(localStorage.getItem('compoundPosts') || '[]');
+    posts.unshift(postData);
+    localStorage.setItem('compoundPosts', JSON.stringify(posts));
+    window.location.href = '7-1-1.compound board.html';
+  }
+
+  // 기본값: 작성일 입력란에 오늘 날짜 자동 설정
+  window.onload = function () {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('dateInput').value = today;
+  };
+</script>
+</body>
+</html>

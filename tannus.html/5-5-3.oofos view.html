@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>우포스 포장 일지 상세보기</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    body { background:black; color:white; font-family:Segoe UI, sans-serif; margin:0; padding:0; }
+    header {
+      background-color: black;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      font-size: 3em;
+      font-family: 'Anton', sans-serif;
+      letter-spacing: 2px;
+    }
+    .menu {
+      width: 98%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      background-color: black;
+      text-align: center;
+      align-items: center;
+      border: 3px solid red;
+      border-radius: 5px;
+    }
+    .menu-item {
+      position: relative;
+    }
+    .menu button {
+      background-color: black;
+      border: none;
+      color: white;
+      padding: 1em 0;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      width: 100%;
+    }
+    .menu button:hover {
+      color: #ff3c57;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #000;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+      z-index: 100;
+      width: 160px;
+    }
+    .submenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .submenu li {
+      text-align: center;
+      font-size: 1em;
+      padding: 0.8em;
+      border-bottom: 1px solid #222;
+    }
+    .submenu li a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+    }
+    .submenu li a:hover {
+      color: #ff3c57;
+    }
+    .menu-item:hover .submenu {
+      display: block;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #aaa;
+      background-color: #1a1a1a;
+      padding: 1em 0;
+      margin-top: auto;
+    }
+    .post-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 20px auto;
+      text-align: center;
+      color: #ff3c57;
+    }
+    .post-meta {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .post-meta span {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    table {
+      width: 100%;
+      background: white;
+      color: black;
+      text-align: center;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 6px;
+    }
+    .back-link, .edit-link {
+      text-align: center;
+      margin: 20px;
+    }
+    .back-link a, .edit-link button {
+      color: #ff3c57;
+      background: transparent;
+      border: 2px solid #ff3c57;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .edit-link button:hover {
+      background-color: #ff3c57;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>Production Management System</header>
+  <nav class="menu">
+    <!-- 메뉴 동일하게 유지 -->
+    <div class="menu-item"><button>NoticeBoard</button><div class="submenu"><ul><li><a href="#">공지사항</a></li><li><a href="#">문의게시판</a></li></ul></div></div>
+    <div class="menu-item"><button>Tire</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Armour</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Tubeless</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Oofos</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>QuanFoam</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>Compound</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>TpuTube</button><div class="submenu"><ul><li><a href="#">생산 계획</a></li><li><a href="#">작업 지시서</a></li><li><a href="#">생산 일지</a></li><li><a href="#">생산 일보</a></li><li><a href="#">포장 일지</a></li><li><a href="#">포장 현황</a></li></ul></div></div>
+    <div class="menu-item"><button>QC</button><div class="submenu"><ul><li><a href="#">Tire</a></li><li><a href="#">Armour</a></li><li><a href="#">Tubeless</a></li><li><a href="#">Oofos</a></li><li><a href="#">QuanFoam</a></li><li><a href="#">Compound</a></li><li><a href="#">Tpu</a></li></ul></div></div>
+  </nav>
+
+  <div class="post-title" id="postTitle">상세 제목</div>
+  <div class="post-meta">
+    <span>작성자: <span id="postAuthor"></span></span>
+    <span>작성일: <span id="postDate"></span></span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Color</th>
+        <th>상태</th>
+        <th>m2 w4</th><th>m3 w5</th><th>m4 w6</th><th>m5 w7</th><th>m6 w8</th>
+        <th>m7 w9</th><th>m8 w10</th><th>m9 w11</th><th>m10 w12</th><th>m11 w13</th>
+        <th>m12 w14</th><th>m13 w15</th><th>m14 w16</th>
+      </tr>
+    </thead>
+    <tbody id="viewTable"></tbody>
+  </table>
+
+  <div class="edit-link">
+    <button onclick="editPost()">수정</button>
+  </div>
+
+  <div class="back-link">
+    <a href="5-5-2.oofos%20paking.html">← 돌아가기</a>
+  </div>
+
+  <footer class="footer">
+    <p style="margin: 0;">담당자 : 김준태 팀장 | 연락처 : 010-8790-0309 | email : jtkim@tannus.com</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const posts = JSON.parse(localStorage.getItem("oofosPosts") || "[]");
+    const post = posts.find(p => p.id == id);
+
+    if (post) {
+      document.getElementById("postTitle").textContent = post.title;
+      document.getElementById("postAuthor").textContent = post.author;
+      document.getElementById("postDate").textContent = post.date;
+
+      const tbody = document.getElementById("viewTable");
+      post.tableData.forEach(entry => {
+        const goodRow = document.createElement("tr");
+        goodRow.innerHTML = `<td rowspan="2">${entry.color}</td><td>양품</td>` + entry.good.map(val => `<td>${val}</td>`).join("");
+        const badRow = document.createElement("tr");
+        badRow.innerHTML = `<td>불량</td>` + entry.bad.map(val => `<td>${val}</td>`).join("");
+        tbody.appendChild(goodRow);
+        tbody.appendChild(badRow);
+      });
+    }
+
+    function editPost() {
+      window.location.href = `./5-5-1.oofos%20input.html?id=${id}&edit=true`;
+    }
+  </script>
+</body>
+</html>
